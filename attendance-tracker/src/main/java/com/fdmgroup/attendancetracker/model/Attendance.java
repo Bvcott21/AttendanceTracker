@@ -2,6 +2,9 @@ package com.fdmgroup.attendancetracker.model;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -15,10 +18,12 @@ import lombok.Data;
 
 @Data @Entity
 public class Attendance {
+    
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "attendance_gen")
     @SequenceGenerator(name = "attendance_gen", sequenceName = "attendance_seq", allocationSize = 1)
     private int attendanceId;
 
+    @JsonManagedReference
     @ManyToOne @JoinColumn(name = "FK_TRAINEE_ID")
     private Trainee trainee;
     private LocalDateTime trackTime;
@@ -29,6 +34,7 @@ public class Attendance {
     private AbsenceCategory absenceCategory;
     private String notesOnAbsence;
 
+    @JsonManagedReference
     @ManyToOne
     private User takenBy; 
 
@@ -61,7 +67,7 @@ public class Attendance {
         + " - notes on absence: " 
         + notesOnAbsence
         + " - takenBy: "
-        + takenBy;
+        + takenBy.getFirstName() + ' ' + takenBy.getLastName();
     }
 
     

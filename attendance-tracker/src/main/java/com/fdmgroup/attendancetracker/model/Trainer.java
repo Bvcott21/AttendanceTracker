@@ -1,5 +1,7 @@
 package com.fdmgroup.attendancetracker.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -8,6 +10,7 @@ import lombok.EqualsAndHashCode;
 
 @Entity @Data @EqualsAndHashCode(callSuper = true)
 public class Trainer extends User {
+    @JsonBackReference
     @ManyToOne @JoinColumn(name = "FK_COURSE_CODE")
      private Cohort currentCohort;
 

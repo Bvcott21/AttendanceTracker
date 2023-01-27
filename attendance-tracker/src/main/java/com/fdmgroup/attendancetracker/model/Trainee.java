@@ -3,6 +3,9 @@ package com.fdmgroup.attendancetracker.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -17,11 +20,12 @@ public class Trainee extends User {
     private String traineeDMSLinkInternal;
     private String traineeDMSLinkExternal;
 
+    @JsonBackReference
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinColumn(name = "FK_TRAINEE_ID")
     private List<Attendance> attendanceRecord = new ArrayList<>();
 
-    @ManyToOne
+    @ManyToOne @JsonBackReference
     @JoinColumn(name = "FK_COURSE_CODE")
     private Cohort cohort;
 
@@ -47,9 +51,7 @@ public class Trainee extends User {
             + " DMS Internal Link: " 
             + this.getTraineeDMSLinkInternal() 
             + " - DMS External Link: "
-            + this.getTraineeDMSLinkExternal()
-            + " attendanceRecord: " 
-            + attendanceRecord; 
+            + this.getTraineeDMSLinkExternal();
     }
     
 }

@@ -3,6 +3,8 @@ package com.fdmgroup.attendancetracker.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -16,6 +18,7 @@ public class Cohort {
     @Id
     private String courseCode;
     
+    @JsonManagedReference
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinColumn(name = "FK_COURSE_CODE")
     private List<Trainee> trainees = new ArrayList<>();

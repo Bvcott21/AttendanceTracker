@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch AttendanceTrackerApplication",
+            "request": "launch",
+            "mainClass": "com.fdmgroup.attendancetracker.AttendanceTrackerApplication",
+            "projectName": "attendance-tracker"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-AttendanceTrackerApplication<attendance-tracker>",
             "request": "launch",
             "cwd": "${workspaceFolder}",

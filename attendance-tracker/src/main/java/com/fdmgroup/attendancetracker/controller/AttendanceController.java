@@ -4,16 +4,16 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.fdmgroup.attendancetracker.model.Attendance;
 import com.fdmgroup.attendancetracker.service.AttendanceService;
 
-@Controller
+@RestController
 public class AttendanceController {
     private static final Logger log = LoggerFactory.getLogger(AttendanceService.class);
 
@@ -23,17 +23,10 @@ public class AttendanceController {
         this.attendanceServ = attendanceServ;
     }
 
-    @GetMapping("/show-attendance")
-    public String displayAllAttendances(Model model) {
+    @GetMapping("/attendance")
+    public List<Attendance> displayAllAttendances() {
         log.info("AttendanceController: displayAllAttendances - calling AttendanceService's listAll.");
-        List<Attendance> attendances = attendanceServ.listAll();
-        
-        log.info(attendances.size() + " records found.");
-        log.info("AttendanceController: displayAllAttendances - injecting attendances retrieved into model.");
-        model.addAttribute("attendances", attendances);
-
-        log.info("AttendanceController: displayAllAttendances - sending user to showAttendance page.");
-        return "showAttendance";
+        return attendanceServ.listAll();
     }
 
     @GetMapping("/attendance-details")
