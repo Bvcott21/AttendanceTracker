@@ -21,7 +21,7 @@ public class Attendance {
     
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "attendance_gen")
     @SequenceGenerator(name = "attendance_gen", sequenceName = "attendance_seq", allocationSize = 1)
-    private int attendanceId;
+    private int id;
 
     @JsonManagedReference
     @ManyToOne @JoinColumn(name = "FK_TRAINEE_ID")
@@ -53,7 +53,7 @@ public class Attendance {
 
     @Override
     public String toString() {
-        return attendanceId 
+        return id
         + " - Trainee: "
         + trainee.getFirstName() + " " + trainee.getLastName()
         + " - trackTime: "

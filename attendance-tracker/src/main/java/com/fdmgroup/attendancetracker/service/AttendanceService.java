@@ -40,13 +40,13 @@ public class AttendanceService {
 
     public Attendance updateAttendance(Attendance attendance) {
         log.info("AttendaceService: updateAttendance - called.");
-        if(attendanceRepo.existsById(attendance.getAttendanceId())) {
-            log.info("AttendaceService: updateAttendance - attendance with ID: " + attendance.getAttendanceId() + " found.");
+        if(attendanceRepo.existsById(attendance.getId())) {
+            log.info("AttendaceService: updateAttendance - attendance with ID: " + attendance.getId() + " found.");
             log.info("AttendaceService: updateAttendance - Updating");
             attendanceRepo.save(attendance);
             return attendance;
         }
-        log.info("AttendaceService: updateAttendance - attendance with ID: " + attendance.getAttendanceId() + " not found.");
+        log.info("AttendaceService: updateAttendance - attendance with ID: " + attendance.getId() + " not found.");
         return null;
     }
     

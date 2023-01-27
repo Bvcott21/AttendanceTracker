@@ -16,7 +16,7 @@ import lombok.Data;
 public abstract class User {
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "fdm_user_gen")
     @SequenceGenerator(name = "fdm_user_gen", sequenceName = "fdm_user_seq", allocationSize = 1)
-    private int userId;
+    private int id;
     private String username;
     private String email;
     private String firstName;
