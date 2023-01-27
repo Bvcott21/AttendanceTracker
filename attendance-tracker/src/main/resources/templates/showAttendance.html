@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" th:src="@{/js/attendanceFilter.js}"></script>
+    <title>Global Attendance Tracker</title>
+</head>
+<body>
+    <h1>Global Attendance</h1>
+
+    <button type="button" th:onclick="showAlert()">Show Alert</button>
+
+    <form>
+
+        <select id="filterSelectionList" onchange="filterSelection()">
+            <option>---Choose Filter Criteria---</option>
+            <option>Trainee</option>
+            <option>Cohort</option>
+            <option>Tracked By</option>
+        </select>
+    </form>
+
+    <table style="border: 1px solid;">
+        <thead style="border: 1px solid;">
+            <tr>
+                <td>Trainee</td>
+                <td>Course code</td>
+                <td>On Time</td>
+                <td>Reason</td>
+                <td>Approx. Arrival Time</td>
+                <td>Tracked By</td>
+                <td>Actions</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="attendance : ${attendances}">
+                <td th:text="${attendance.trainee.firstName} + ' ' + ${attendance.trainee.lastName}"></td>
+                <td th:text="${attendance.trainee.cohort.courseCode}"></td>
+                <td th:text="${attendance.isOnTime} ? 'YES' : 'NO'"></td>
+                <td th:text="${attendance.isOnTime} ? 'N/A' : ${attendance.absenceCategory}"></td>
+                <td th:text="${attendance.isOnTime} ? 'N/A' : ${attendance.approxArrivalTime}"></td>
+                <td th:text="${attendance.takenBy.firstName} + ' ' + ${attendance.takenBy.lastName}"></td>
+                <td>
+                    <a th:href="@{attendance-details(attendanceId=${attendance.attendanceId})}">Details</a>
+                    <a th:href="@{edit-attendance(attendanceId=${attendance.attendanceId})}">Edit</a>
+                    <a href="/">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="/">Return to home page</a>
+</body>
+</html>

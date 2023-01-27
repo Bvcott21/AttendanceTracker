@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" th:src="@{/js/attendanceFilter.js}"></script>
+    <title>Global Attendance Tracker: Details</title>
+</head>
+<body>
+    <h1>Attendance Details <span th:text="${attendance.attendanceId}"></span></h1>
+
+    <h3>Trainee Name</h3>
+    <p th:text="${attendance.trainee.firstName} + ' ' + ${attendance.trainee.lastName}"></p>
+    <hr/>
+
+    <h3>Trainee Username</h3>
+    <p th:text="${attendance.trainee.username}"></p>
+    <hr/>
+
+    <h3>Track Time</h3>
+    <p th:text="${attendance.trackTime}"></p>
+    <hr/>
+
+    <h3>Was on Time</h3>
+    <p th:text="${attendance.isOnTime} ? 'YES' : 'NO'"></p>
+    <hr/>
+
+    <h3>Approximal Arrival Date</h3>
+    <p th:text="${attendance.isOnTime} ? 'N/A' : ${attendance.approxArrivalTime}"></p>
+    <hr/>
+
+    <h3>Absence Category</h3>
+    <p th:text="${attendance.isOnTime} ? 'N/A' : ${attendance.absenceCategory}"></p>
+    <hr/>
+
+    <h3>notesOnAbsence</h3>
+    <p th:text="${attendance.isOnTime} ? 'N/A' : ${attendance.notesOnAbsence}"></p>
+    <hr/>
+
+    <h3>Tracker</h3>
+    <p th:text="${attendance.takenBy.firstName} + ' ' + ${attendance.takenBy.lastName}"></p>
+    <hr/>
+    
+</body>
+</html>
