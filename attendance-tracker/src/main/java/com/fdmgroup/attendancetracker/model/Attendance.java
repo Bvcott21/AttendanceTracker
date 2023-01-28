@@ -32,6 +32,7 @@ public class Attendance {
 
     @Enumerated(EnumType.STRING)
     private AbsenceCategory absenceCategory;
+    //Pensar en hacerlo una lista
     private String notesOnAbsence;
 
     @JsonManagedReference
