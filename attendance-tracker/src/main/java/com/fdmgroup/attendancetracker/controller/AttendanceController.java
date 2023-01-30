@@ -46,13 +46,9 @@ public class AttendanceController {
                 .body(attendance);
         }
 
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-    }
-
-    @GetMapping("/edit-attendance")
-    public String displayEditAttendance(Model model, @RequestParam("attendanceId") int attendanceId, @ModelAttribute Attendance attendance) {
-        model.addAttribute("attendance", attendanceServ.getAttendance(attendanceId));
-        return "editAttendance";
+        return ResponseEntity
+            .status(HttpStatus.NOT_FOUND)
+            .build();
     }
     
 }

@@ -34,19 +34,7 @@ public class AttendanceService {
             return optionalAttendance.get();
         }
 
-        log.info("AttendaceService: getAttendance - Not Found");
-        return null;
-    }
-
-    public Attendance updateAttendance(Attendance attendance) {
-        log.info("AttendaceService: updateAttendance - called.");
-        if(attendanceRepo.existsById(attendance.getId())) {
-            log.info("AttendaceService: updateAttendance - attendance with ID: " + attendance.getId() + " found.");
-            log.info("AttendaceService: updateAttendance - Updating");
-            attendanceRepo.save(attendance);
-            return attendance;
-        }
-        log.info("AttendaceService: updateAttendance - attendance with ID: " + attendance.getId() + " not found.");
+        log.debug("AttendaceService: getAttendance - Not Found");
         return null;
     }
     
