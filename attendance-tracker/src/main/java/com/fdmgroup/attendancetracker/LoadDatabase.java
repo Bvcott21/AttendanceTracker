@@ -55,6 +55,12 @@ public class LoadDatabase {
             
             cohort2.addTrainee(trainee3);
             cohort2.addTrainee(trainee4);
+
+            //Persisting trainees
+            userRepo.save(trainee1);
+            userRepo.save(trainee2);
+            userRepo.save(trainee3);
+            userRepo.save(trainee4);
             
             //Persisting cohorts
             cohortRepo.save(cohort1);
@@ -68,11 +74,7 @@ public class LoadDatabase {
             userRepo.save(admin1);
             userRepo.save(admin2);
 
-            //Persisting trainees
-            userRepo.save(trainee1);
-            userRepo.save(trainee2);
-            userRepo.save(trainee3);
-            userRepo.save(trainee4);
+            
 
             //Creating AttendanceReports
             Attendance attendance1 = new Attendance(trainee1, LocalDateTime.of(2022, Month.JULY, 15, 9, 15, 15), true, LocalDateTime.of(2022, Month.JULY, 20, 9, 0, 0), null, null, trainer1);

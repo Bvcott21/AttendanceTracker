@@ -34,7 +34,7 @@ public class UserService {
     }
 
     public List<User> listAll() {
-        log.info("UserService: getAllUsers - calling userRepository's findAll");
+        log.info("UserService: listCall - calling userRepository's findAll");
         return userRepo.findAll();
         
     }

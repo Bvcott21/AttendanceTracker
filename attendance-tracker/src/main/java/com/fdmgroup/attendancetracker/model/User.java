@@ -1,5 +1,7 @@
 package com.fdmgroup.attendancetracker.model;
 
+import io.micrometer.common.lang.NonNull;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,10 +19,20 @@ public abstract class User {
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "fdm_user_gen")
     @SequenceGenerator(name = "fdm_user_gen", sequenceName = "fdm_user_seq", allocationSize = 1)
     private int id;
+
+    @NonNull @Column(nullable=false, unique=true)
     private String username;
+
+    @NonNull @Column(nullable=false, unique=true)
     private String email;
+
+    @NonNull @Column(nullable=false, unique=true)
     private String firstName;
+
+    @NonNull @Column(nullable=false)
     private String lastName;
+
+    @NonNull @Column(nullable=false)
     private String password;
 
     User() {}
