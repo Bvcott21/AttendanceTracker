@@ -57,72 +57,93 @@ public class UserController {
             .build();
     }
 
-    @PostMapping("/admin")
-    public ResponseEntity<Admin> createAdmin(@RequestBody Admin admin) {
-        User adminCreated = userServ.createUser(admin);
+    @PostMapping
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        User userCreated = userServ.createUser(user);
 
-        if(adminCreated != null) {
+        if(userCreated != null) {
+            log.info("User created.");
             URI loc = ServletUriComponentsBuilder
-                .fromCurrentServletMapping() //Double check this
-                .replacePath("api/v1/user/{id}")
-                .buildAndExpand(adminCreated.getId())
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(userCreated.getId())
                 .toUri();
-
-            System.out.println(loc);
-
             return ResponseEntity
                 .created(loc)
                 .build();
         }
-
+        log.debug("Cohort not persisted.");
         return ResponseEntity
             .status(HttpStatus.CONFLICT)
             .build();
     }
 
-    @PostMapping("/trainer")
-    public ResponseEntity<Trainer> createTrainer(@RequestBody Trainer trainer) {
-        User trainerCreated = userServ.createUser(trainer);
+    // @PostMapping("/admin")
+    // public ResponseEntity<Admin> createAdmin(@RequestBody Admin admin) {
+    //     User adminCreated = userServ.createUser(admin);
 
-        if(trainerCreated != null) {
-            URI loc = ServletUriComponentsBuilder
-                .fromCurrentServletMapping() //Double check this
-                .replacePath("api/v1/user/{id}")
-                .buildAndExpand(trainerCreated.getId())
-                .toUri();
+    //     if(adminCreated != null) {
+    //         URI loc = ServletUriComponentsBuilder
+    //             .fromCurrentServletMapping() //Double check this
+    //             .replacePath("api/v1/user/{id}")
+    //             .buildAndExpand(adminCreated.getId())
+    //             .toUri();
 
-            System.out.println(loc);
+    //         System.out.println(loc);
 
-            return ResponseEntity
-                .created(loc)
-                .build();
-        }
+    //         return ResponseEntity
+    //             .created(loc)
+    //             .build();
+    //     }
 
-        return ResponseEntity
-            .status(HttpStatus.CONFLICT)
-            .build();
-    }
+    //     return ResponseEntity
+    //         .status(HttpStatus.CONFLICT)
+    //         .build();
+    // }
 
-    @PostMapping("/trainee")
-    public ResponseEntity<Trainee> createTrainee(@RequestBody Trainee trainee) {
-        User traineeCreated = userServ.createUser(trainee);
+    // @PostMapping("/trainer")
+    // public ResponseEntity<Trainer> createTrainer(@RequestBody Trainer trainer) {
+    //     User trainerCreated = userServ.createUser(trainer);
 
-        if(traineeCreated != null) {
-            URI loc = ServletUriComponentsBuilder
-                .fromCurrentServletMapping() //Double check this
-                .replacePath("api/v1/user/{id}")
-                .buildAndExpand(traineeCreated.getId())
-                .toUri();
+    //     if(trainerCreated != null) {
+    //         URI loc = ServletUriComponentsBuilder
+    //             .fromCurrentServletMapping() //Double check this
+    //             .replacePath("api/v1/user/{id}")
+    //             .buildAndExpand(trainerCreated.getId())
+    //             .toUri();
 
-            return ResponseEntity
-                .created(loc)
-                .build();
-        }
+    //         System.out.println(loc);
 
-        return ResponseEntity
-            .status(HttpStatus.CONFLICT)
-            .build();
-    }
+    //         return ResponseEntity
+    //             .created(loc)
+    //             .build();
+    //     }
+
+    //     return ResponseEntity
+    //         .status(HttpStatus.CONFLICT)
+    //         .build();
+    // }
+
+    // @PostMapping("/trainee")
+    // public ResponseEntity<Trainee> createTrainee(@RequestBody Trainee trainee) {
+    //     User traineeCreated = userServ.createUser(trainee);
+
+    //     if(traineeCreated != null) {
+    //         URI loc = ServletUriComponentsBuilder
+    //             .fromCurrentServletMapping() //Double check this
+    //             .replacePath("api/v1/user/{id}")
+    //             .buildAndExpand(traineeCreated.getId())
+    //             .toUri();
+
+    //         return ResponseEntity
+    //             .created(loc)
+    //             .build();
+    //     }
+
+    //     return ResponseEntity
+    //         .status(HttpStatus.CONFLICT)
+    //         .build();
+    // }
 
     
 }
