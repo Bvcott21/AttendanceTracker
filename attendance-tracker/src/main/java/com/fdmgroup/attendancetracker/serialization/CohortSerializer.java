@@ -33,6 +33,7 @@ public class CohortSerializer extends StdSerializer<Cohort> {
                                 gen.writeStringField("username", trainee.getUsername());
                                 gen.writeStringField("firstName", trainee.getFirstName());
                                 gen.writeStringField("lastName", trainee.getLastName());
+                                gen.writeStringField("email", trainee.getEmail());
                                 gen.writeStringField("DMSLinkInternal", trainee.getTraineeDMSLinkInternal());
                                 gen.writeStringField("DMSLinkExternal", trainee.getTraineeDMSLinkExternal());
                             gen.writeEndObject();

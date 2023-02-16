@@ -2,9 +2,8 @@ package com.fdmgroup.attendancetracker.model;
 
 import java.time.LocalDateTime;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fdmgroup.attendancetracker.serialization.AttendanceSerializer;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -18,10 +17,7 @@ import jakarta.persistence.SequenceGenerator;
 import lombok.Data;
 
 @Data @Entity
-@JsonIdentityInfo(
-    generator = ObjectIdGenerators.PropertyGenerator.class,
-    property = "id"
-)
+@JsonSerialize(using = AttendanceSerializer.class)
 public class Attendance {
     
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "attendance_gen")
