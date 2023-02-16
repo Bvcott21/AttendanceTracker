@@ -38,5 +38,19 @@ public class UserService {
         return userRepo.findAll();
         
     }
+
+    public User createUser(User user) {
+        User userTaken = userRepo.save(user);
+
+        if(userTaken == null) {
+            log.debug("User already exists.");
+            return null;
+        }
+
+        log.info("User persisted.");
+        return userTaken;
+
+
+    }
     
 }

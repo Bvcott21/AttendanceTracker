@@ -22,7 +22,7 @@ public class Attendance {
     @SequenceGenerator(name = "attendance_gen", sequenceName = "attendance_seq", allocationSize = 1)
     private int id;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "trainee-attendance")
     @ManyToOne @JoinColumn(name = "FK_TRAINEE_ID")
     private Trainee trainee;
     private LocalDateTime trackTime;
@@ -34,7 +34,6 @@ public class Attendance {
     //Pensar en hacerlo una lista
     private String notesOnAbsence;
 
-    @JsonManagedReference
     @ManyToOne
     private User takenBy; 
 

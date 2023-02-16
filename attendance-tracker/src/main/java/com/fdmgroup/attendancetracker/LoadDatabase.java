@@ -32,6 +32,10 @@ public class LoadDatabase {
             Cohort cohort1 = new Cohort("COURSE_CODE_1");
             Cohort cohort2 = new Cohort("COURSE_CODE_2");
 
+            //Persisting cohorts
+            cohortRepo.save(cohort1);
+            cohortRepo.save(cohort2);
+
             //Creating trainers
             Trainer trainer1 = new Trainer("Edgar.Afonso", "edgar.afonso@fdmgroup.com", "Edgar",  "Afonso", "Apple123");
             Trainer trainer2 = new Trainer("Nick.Lawton", "nick.lawton@fdmgroup.com", "Nick",  "Lawton", "Pear45678");
@@ -62,9 +66,7 @@ public class LoadDatabase {
             userRepo.save(trainee3);
             userRepo.save(trainee4);
             
-            //Persisting cohorts
-            cohortRepo.save(cohort1);
-            cohortRepo.save(cohort2);
+            
             
             //Persisting trainers
             userRepo.save(trainer1);

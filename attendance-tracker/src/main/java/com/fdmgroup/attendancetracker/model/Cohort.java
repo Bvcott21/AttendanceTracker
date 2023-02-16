@@ -18,7 +18,7 @@ public class Cohort {
     @Id
     private String courseCode;
     
-    @JsonManagedReference
+    @JsonManagedReference(value = "cohort-trainee")
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinColumn(name = "FK_COURSE_CODE")
     private List<Trainee> trainees = new ArrayList<>();

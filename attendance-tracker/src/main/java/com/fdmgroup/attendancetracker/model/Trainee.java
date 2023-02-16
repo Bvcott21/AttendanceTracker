@@ -19,12 +19,12 @@ public class Trainee extends User {
     private String traineeDMSLinkInternal;
     private String traineeDMSLinkExternal;
 
-    @JsonBackReference
+    @JsonBackReference(value = "trainee-attendance")
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinColumn(name = "FK_TRAINEE_ID")
     private List<Attendance> attendanceRecord = new ArrayList<>();
 
-    @ManyToOne @JsonBackReference
+    @ManyToOne @JsonBackReference(value = "cohort-trainee")
     @JoinColumn(name = "FK_COURSE_CODE")
     private Cohort cohort;
 

@@ -37,4 +37,15 @@ public class CohortService {
         log.info("CohortService: listAll - calling cohortRepository's findAll");
         return cohortRepo.findAll();
     }
+
+    public Cohort createCohort(Cohort cohort) {
+        Optional<Cohort> existingCohort = cohortRepo.findById(cohort.getCourseCode());
+        
+        if(existingCohort.isEmpty()) {
+            log.info("Cohort isn't in database. Persisting...");
+            return cohortRepo.save(cohort);
+        }
+        log.debug("Cohort already in database.");
+        return null;
+    }
 }
