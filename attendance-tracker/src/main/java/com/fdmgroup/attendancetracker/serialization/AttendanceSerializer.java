@@ -39,7 +39,7 @@ public class AttendanceSerializer extends StdSerializer<Attendance> {
             if(attendance.getIsOnTime() == false) {
                 gen.writeStringField("approxArrivalTime", attendance.getApproxArrivalTime().toString());
                 gen.writeStringField("AbsenceCategory", attendance.getAbsenceCategory().toString());
-                gen.writeStringField("notesOnAbsence", attendance.getNotesOnAbsence());
+                //gen.writeStringField("notesOnAbsence", attendance.getNotesOnAbsence());
             }
 
             gen.writeFieldName("takenBy");

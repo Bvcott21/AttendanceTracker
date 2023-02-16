@@ -79,17 +79,26 @@ public class LoadDatabase {
             
 
             //Creating AttendanceReports
-            Attendance attendance1 = new Attendance(trainee1, LocalDateTime.of(2022, Month.JULY, 15, 9, 15, 15), true, LocalDateTime.of(2022, Month.JULY, 20, 9, 0, 0), null, null, trainer1);
-            Attendance attendance2 = new Attendance(trainee1, LocalDateTime.of(2022, Month.JULY, 20, 9, 15, 15), false, LocalDateTime.of(2022, Month.JULY, 20, 10, 0, 0), AbsenceCategory.LATE, "Mentioned presenting technical issues", trainer1);
+            Attendance attendance1 = new Attendance(trainee1, LocalDateTime.of(2022, Month.JULY, 15, 9, 15, 15), true, trainer1);
+            Attendance attendance2 = new Attendance(trainee1, LocalDateTime.of(2022, Month.JULY, 20, 9, 15, 15), false, LocalDateTime.of(2022, Month.JULY, 20, 10, 0, 0), AbsenceCategory.LATE, trainer1);
+            attendance2.addNote(trainer1, "No reasons given");
             
-            Attendance attendance3 = new Attendance(trainee2, LocalDateTime.of(2022, Month.JULY, 15, 9, 15, 15), true, LocalDateTime.of(2022, Month.JULY, 20, 9, 0, 0), null, null, trainer2);
-            Attendance attendance4 = new Attendance(trainee2, LocalDateTime.of(2022, Month.JULY, 20, 9, 15, 15), false, LocalDateTime.of(2022, Month.JULY, 20, 12, 0, 0), AbsenceCategory.SICKNESS, "mentioned feeling unwell", trainer2);
-            
-            Attendance attendance5 = new Attendance(trainee3, LocalDateTime.of(2022, Month.JULY, 20, 9, 15, 15), false, LocalDateTime.of(2022, Month.JULY, 20, 12, 0, 0), AbsenceCategory.SICKNESS, "mentioned feeling unwell", admin1);
-            Attendance attendance6 = new Attendance(trainee3, LocalDateTime.of(2022, Month.JULY, 20, 9, 15, 15), false, LocalDateTime.of(2022, Month.JULY, 20, 12, 0, 0), AbsenceCategory.SICKNESS, "mentioned feeling unwell", admin1);
+            Attendance attendance3 = new Attendance(trainee2, LocalDateTime.of(2022, Month.JULY, 15, 9, 15, 15), true, trainer2);
+            Attendance attendance4 = new Attendance(trainee2, LocalDateTime.of(2022, Month.JULY, 20, 9, 15, 15), false, LocalDateTime.of(2022, Month.JULY, 20, 12, 0, 0), AbsenceCategory.SICKNESS, trainer2);
+            attendance4.addNote(trainer2, "Mentioned feeling unwell this morning.");
 
-            Attendance attendance7 = new Attendance(trainee4, LocalDateTime.of(2022, Month.JULY, 20, 9, 15, 15), false, LocalDateTime.of(2022, Month.JULY, 20, 12, 0, 0), AbsenceCategory.SICKNESS, "mentioned feeling unwell", admin2);
-            Attendance attendance8 = new Attendance(trainee4, LocalDateTime.of(2022, Month.JULY, 20, 9, 15, 15), false, LocalDateTime.of(2022, Month.JULY, 20, 12, 0, 0), AbsenceCategory.SICKNESS, "mentioned feeling unwell", admin2);
+            Attendance attendance5 = new Attendance(trainee3, LocalDateTime.of(2022, Month.JULY, 20, 9, 15, 15), false, LocalDateTime.of(2022, Month.JULY, 20, 12, 0, 0), AbsenceCategory.SICKNESS, admin1);
+            attendance5.addNote(admin1, "No contact with him yet.");
+            Attendance attendance6 = new Attendance(trainee3, LocalDateTime.of(2022, Month.JULY, 20, 9, 15, 15), false, LocalDateTime.of(2022, Month.JULY, 20, 12, 0, 0), AbsenceCategory.SICKNESS, admin1);
+            attendance6.addNote(admin1, "Left FDM.");
+
+            Attendance attendance7 = new Attendance(trainee4, LocalDateTime.of(2022, Month.JULY, 20, 9, 15, 15), false, LocalDateTime.of(2022, Month.JULY, 20, 12, 0, 0), AbsenceCategory.OTHER, admin2);
+            attendance7.addNote(admin2, "Mentioned technical issues");
+            attendance7.addNote(admin1, "Still hasn't contacted admin? ");
+            attendance7.addNote(admin2, "Nothing yet.");
+
+            Attendance attendance8 = new Attendance(trainee4, LocalDateTime.of(2022, Month.JULY, 20, 9, 15, 15), false, LocalDateTime.of(2022, Month.JULY, 20, 12, 0, 0), AbsenceCategory.ABSENT, admin2);
+            attendance8.addNote(admin2, "Attending to graduation.");
             
             //Adding attendance to trainee
             trainee1.addAttendanceToRecord(attendance1);

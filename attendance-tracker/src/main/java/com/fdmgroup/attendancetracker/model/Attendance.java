@@ -1,10 +1,13 @@
 package com.fdmgroup.attendancetracker.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fdmgroup.attendancetracker.serialization.AttendanceSerializer;
 
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -32,8 +35,9 @@ public class Attendance {
 
     @Enumerated(EnumType.STRING)
     private AbsenceCategory absenceCategory;
-    //Pensar en hacerlo una lista
-    private String notesOnAbsence;
+    
+    @Embedded
+    private List<Note> notes = new ArrayList<Note>();
 
     @ManyToOne
     private User takenBy; 
@@ -41,34 +45,24 @@ public class Attendance {
     Attendance() {}
 
     public Attendance(Trainee trainee, LocalDateTime trackTime, Boolean isOnTime, LocalDateTime approxArrivalTime,
-            AbsenceCategory absenceCategory, String notesOnAbsence, User takenBy) {
+            AbsenceCategory absenceCategory, User takenBy) {
         this.trainee = trainee;
         this.trackTime = trackTime;
         this.isOnTime = isOnTime;
         this.approxArrivalTime = approxArrivalTime;
         this.absenceCategory = absenceCategory;
-        this.notesOnAbsence = notesOnAbsence;
         this.takenBy = takenBy;
     }
 
-    @Override
-    public String toString() {
-        return id
-        + " - Trainee: "
-        + trainee.getFirstName() + " " + trainee.getLastName()
-        + " - trackTime: "
-        + trackTime
-        + " - isOnTime: "
-        + isOnTime
-        + " - approxArrivalTime: "
-        + approxArrivalTime
-        + " - absenceCategory"
-        + absenceCategory
-        + " - notes on absence: " 
-        + notesOnAbsence
-        + " - takenBy: "
-        + takenBy.getFirstName() + ' ' + takenBy.getLastName();
+    public Attendance(Trainee trainee, LocalDateTime trackTime, Boolean isOnTime, User takenBy) {
+        this.trainee = trainee;
+        this.trackTime = trackTime;
+        this.isOnTime = isOnTime;
+        this.takenBy = takenBy;
     }
 
+    public void addNote(User user, String note) {
+        notes.add(new Note(user, note));    
+    }
     
 }
