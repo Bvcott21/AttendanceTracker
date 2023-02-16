@@ -3,6 +3,9 @@ package com.fdmgroup.attendancetracker.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fdmgroup.attendancetracker.serialization.TraineeSerializer;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -13,6 +16,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data @Entity @EqualsAndHashCode(callSuper = true)
+@JsonSerialize(using = TraineeSerializer.class)
 public class Trainee extends User {
     private String traineeDMSLinkInternal;
     private String traineeDMSLinkExternal;
