@@ -7,10 +7,12 @@ import java.util.List;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fdmgroup.attendancetracker.serialization.AttendanceSerializer;
 
-import jakarta.persistence.Embedded;
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -36,7 +38,8 @@ public class Attendance {
     @Enumerated(EnumType.STRING)
     private AbsenceCategory absenceCategory;
     
-    @Embedded
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "attendance_notes")
     private List<Note> notes = new ArrayList<Note>();
 
     @ManyToOne

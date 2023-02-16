@@ -48,8 +48,29 @@ public class AttendanceSerializer extends StdSerializer<Attendance> {
                 gen.writeStringField("username", attendance.getTakenBy().getUsername());
                 gen.writeStringField("firstName", attendance.getTakenBy().getFirstName());
                 gen.writeStringField("lastName", attendance.getTakenBy().getLastName());
-                gen.writeStringField("password", attendance.getTakenBy().getPassword());
             gen.writeEndObject();
+
+            gen.writeFieldName("notes");    
+            gen.writeStartArray();
+            if(attendance.getNotes() != null) {
+                
+                attendance
+                    .getNotes()
+                    .forEach(note -> {
+
+                        try {
+                            gen.writeStartObject();
+                                gen.writeStringField("firstName", note.getAuthor().getFirstName());
+                                gen.writeStringField("lastName", note.getAuthor().getLastName());
+                                gen.writeStringField("note", note.getNote());
+                                gen.writeStringField("time", note.getTime().toString());
+                            gen.writeEndObject();
+                        } catch(IOException e) {
+                            e.printStackTrace();
+                        } 
+                    });
+            }
+            gen.writeEndArray();
         gen.writeEndObject();
     }
 
