@@ -1,5 +1,8 @@
 package com.fdmgroup.attendancetracker.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import io.micrometer.common.lang.NonNull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,6 +18,10 @@ import lombok.Data;
 @Entity @Data 
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS) 
 @Table(name = "FDM_USER")
+@JsonIdentityInfo(
+    generator = ObjectIdGenerators.PropertyGenerator.class,
+    property = "id"
+)
 public abstract class User {
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "fdm_user_gen")
     @SequenceGenerator(name = "fdm_user_gen", sequenceName = "fdm_user_seq", allocationSize = 1)

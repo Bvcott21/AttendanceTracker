@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -19,12 +21,11 @@ public class Trainee extends User {
     private String traineeDMSLinkInternal;
     private String traineeDMSLinkExternal;
 
-    @JsonBackReference(value = "trainee-attendance")
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinColumn(name = "FK_TRAINEE_ID")
     private List<Attendance> attendanceRecord = new ArrayList<>();
 
-    @ManyToOne @JsonBackReference(value = "cohort-trainee")
+    @ManyToOne
     @JoinColumn(name = "FK_COURSE_CODE")
     private Cohort cohort;
 
