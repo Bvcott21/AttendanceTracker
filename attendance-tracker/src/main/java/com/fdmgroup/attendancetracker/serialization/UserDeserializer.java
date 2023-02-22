@@ -20,12 +20,8 @@ import com.fdmgroup.attendancetracker.model.Trainer;
 import com.fdmgroup.attendancetracker.model.User;
 import com.fdmgroup.attendancetracker.repository.AttendanceRepository;
 import com.fdmgroup.attendancetracker.repository.CohortRepository;
-import com.fdmgroup.attendancetracker.repository.UserRepository;
 
 public class UserDeserializer extends JsonDeserializer<User> {
-
-    @Autowired private UserRepository userRepository;
-
     @Autowired private CohortRepository cohortRepository;
 
     @Autowired private AttendanceRepository attendanceRepository;
