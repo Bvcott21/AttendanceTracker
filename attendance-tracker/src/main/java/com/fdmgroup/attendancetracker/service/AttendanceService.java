@@ -76,5 +76,13 @@ public class AttendanceService {
         log.info("Attendance persisted.");
         return attendanceTaken;
     }
+
+    public boolean deleteAttendance(int id) {
+        if(attendanceRepo.existsById(id)) {
+            attendanceRepo.deleteById(id);
+            return true;
+        }
+        return false;
+    }
     
 }

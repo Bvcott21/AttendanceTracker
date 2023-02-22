@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -78,6 +79,16 @@ public class AttendanceController {
         return ResponseEntity   
             .status(HttpStatus.CONFLICT)
             .build();
+    }
+
+    @DeleteMapping("/{id}")
+    ResponseEntity<Void> deleteAttendance(@PathVariable int id) {
+        if(attendanceServ.deleteAttendance(id)) {
+            log.info("Attendance: " + id + " deleted successfully.");
+            return ResponseEntity.status(HttpStatus.OK).build();
+        }
+        log.warn("Attendance: " + id + " not found.");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
     
 }
