@@ -2,6 +2,10 @@ package com.fdmgroup.attendancetracker.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fdmgroup.attendancetracker.serialization.UserDeserializer;
+import com.fdmgroup.attendancetracker.serialization.UserSerializer;
 
 import io.micrometer.common.lang.NonNull;
 import jakarta.persistence.Column;
@@ -22,6 +26,8 @@ import lombok.Data;
     generator = ObjectIdGenerators.PropertyGenerator.class,
     property = "id"
 )
+@JsonSerialize(using = UserSerializer.class)
+@JsonDeserialize(using = UserDeserializer.class)
 public abstract class User {
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "fdm_user_gen")
     @SequenceGenerator(name = "fdm_user_gen", sequenceName = "fdm_user_seq", allocationSize = 1)
@@ -42,7 +48,7 @@ public abstract class User {
     @NonNull @Column(nullable=false)
     private String password;
 
-    User() {}
+    public User() {}
 
     protected User(String username, String email, String firstName, String lastName, String password) {
         this.username = username;

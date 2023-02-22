@@ -29,7 +29,7 @@ public class Trainee extends User {
     @JoinColumn(name = "FK_COURSE_CODE")
     private Cohort cohort;
 
-    Trainee() {}
+    public Trainee() {}
     
     public Trainee(String username, String email, String firstName, String lastName, String password,
             String traineeDMSLinkInternal, String traineeDMSLinkExternal) {

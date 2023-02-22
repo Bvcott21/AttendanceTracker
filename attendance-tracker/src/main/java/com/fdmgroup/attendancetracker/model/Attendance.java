@@ -57,9 +57,30 @@ public class Attendance {
         this.takenBy = takenBy;
     }
 
-    public Attendance(Trainee trainee, LocalDateTime trackTime, Boolean isOnTime, User takenBy) {
+    public Attendance(Trainee trainee, LocalDateTime trackTime, Boolean isOnTime, Trainer takenBy) {
         this.trainee = trainee;
         this.trackTime = trackTime;
+        this.isOnTime = isOnTime;
+        this.takenBy = takenBy;
+    }
+
+    public Attendance(Trainee trainee, LocalDateTime trackTime, Boolean isOnTime, Admin takenBy) {
+        this.trainee = trainee;
+        this.trackTime = trackTime;
+        this.isOnTime = isOnTime;
+        this.takenBy = takenBy;
+    }
+
+    public Attendance(Trainee trainee, Boolean isOnTime, Trainer takenBy) {
+        this.trainee = trainee;
+        this.trackTime = LocalDateTime.now();
+        this.isOnTime = isOnTime;
+        this.takenBy = takenBy;
+    }
+
+    public Attendance(Trainee trainee, Boolean isOnTime, Admin takenBy) {
+        this.trainee = trainee;
+        this.trackTime = LocalDateTime.now();
         this.isOnTime = isOnTime;
         this.takenBy = takenBy;
     }
