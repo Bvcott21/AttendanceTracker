@@ -49,8 +49,14 @@ public class UserService {
 
         log.info("User persisted.");
         return userTaken;
+    }
 
-
+    public boolean deleteUser(int id) {
+        if(userRepo.existsById(id)) {
+            userRepo.deleteById(id);
+            return true;
+        }
+        return false;
     }
     
 }
