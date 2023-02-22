@@ -52,32 +52,32 @@ public class AttendanceController {
             .build();
     }
 
-    @PostMapping
-    void createAttendance(@RequestBody Attendance attendance) {
-        log.info("Trying to create: " + attendance);
-    }
-
     // @PostMapping
-    // ResponseEntity<Attendance> createAttendance(@RequestBody Attendance attendance) {
-    //     Attendance attendanceCreated = attendanceServ.createAttendance(attendance);
-
-    //     if(attendanceCreated != null) {
-    //         log.info("Attendance: " + attendanceCreated + " created successfully.");
-
-    //         URI loc = ServletUriComponentsBuilder
-    //             .fromCurrentRequest()
-    //             .path("{/id}")
-    //             .buildAndExpand(attendanceCreated.getId())
-    //             .toUri();
-    //         return ResponseEntity
-    //             .created(loc)
-    //             .build();
-    //     }
-
-    //     log.debug("Attendance not persisted.");
-    //     return ResponseEntity   
-    //         .status(HttpStatus.CONFLICT)
-    //         .build();
+    // void createAttendance(@RequestBody Attendance attendance) {
+    //     log.info("Trying to create: " + attendance);
     // }
+
+    @PostMapping
+    ResponseEntity<Attendance> createAttendance(@RequestBody Attendance attendance) {
+        Attendance attendanceCreated = attendanceServ.createAttendance(attendance);
+
+        if(attendanceCreated != null) {
+            log.info("Attendance: " + attendanceCreated + " created successfully.");
+
+            URI loc = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("{/id}")
+                .buildAndExpand(attendanceCreated.getId())
+                .toUri();
+            return ResponseEntity
+                .created(loc)
+                .build();
+        }
+
+        log.debug("Attendance not persisted.");
+        return ResponseEntity   
+            .status(HttpStatus.CONFLICT)
+            .build();
+    }
     
 }

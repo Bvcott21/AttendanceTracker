@@ -48,4 +48,12 @@ public class CohortService {
         log.debug("Cohort already in database.");
         return null;
     }
+
+    public boolean deleteCohort(String courseCode) {
+        if(cohortRepo.existsById(courseCode)) {
+            cohortRepo.deleteById(courseCode);
+            return true;
+        }
+        return false;
+    }
 }
