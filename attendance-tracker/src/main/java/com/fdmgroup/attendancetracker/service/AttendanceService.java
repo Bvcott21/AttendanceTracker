@@ -84,5 +84,13 @@ public class AttendanceService {
         }
         return false;
     }
+
+    public boolean updateAttendance(Attendance attendance) {
+        if(attendanceRepo.existsById(attendance.getId())) {
+            attendanceRepo.save(attendance);
+            return true;
+        }
+        return false;
+    }
     
 }

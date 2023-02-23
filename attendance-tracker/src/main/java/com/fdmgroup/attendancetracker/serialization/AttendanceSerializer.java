@@ -60,6 +60,7 @@ public class AttendanceSerializer extends StdSerializer<Attendance> {
 
                         try {
                             gen.writeStartObject();
+                                gen.writeNumberField("id", note.getAuthor().getId());
                                 gen.writeStringField("firstName", note.getAuthor().getFirstName());
                                 gen.writeStringField("lastName", note.getAuthor().getLastName());
                                 gen.writeStringField("note", note.getNote());

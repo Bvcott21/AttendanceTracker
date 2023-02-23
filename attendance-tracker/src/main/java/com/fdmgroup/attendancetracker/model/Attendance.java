@@ -45,7 +45,7 @@ public class Attendance {
     @ManyToOne
     private User takenBy; 
 
-    Attendance() {}
+    public Attendance() {}
 
     public Attendance(Trainee trainee, LocalDateTime trackTime, Boolean isOnTime, LocalDateTime approxArrivalTime,
             AbsenceCategory absenceCategory, User takenBy) {
